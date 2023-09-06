@@ -76,4 +76,5 @@
 table.isiTable td {
     font-weight: 500;
     height: 40px;
+    line-height: 40px;
 }
