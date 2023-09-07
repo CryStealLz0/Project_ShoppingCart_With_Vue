@@ -28,7 +28,11 @@
                         <td class="col-2">
                             {{ item.detailProduct.price }}
                         </td>
-                        <td class="col-2"><button>Add to cart</button></td>
+                        <td class="col-2">
+                            <button @click="addToCart(index)">
+                                Add to cart
+                            </button>
+                        </td>
                     </tr>
                 </table>
             </div>
@@ -45,16 +49,14 @@
                         <th class="col-4"></th>
                     </tr>
                     <tr
-                        class="col-12 isiTable"
-                        v-for="(productItem, index) in product2"
+                        v-for="(cartItem, index) in cart"
                         :key="index"
+                        class="isiTable"
                     >
-                        <td class="col-3">{{ productItem.isiProduct.name }}</td>
-                        <td class="col-3">
-                            {{ productItem.isiProduct.stock }}
-                        </td>
+                        <td class="col-3">{{ cartItem.isiProduct.name }}</td>
+                        <td class="col-3">{{ cartItem.isiProduct.stock }}</td>
                         <td class="col-2">
-                            Rp.{{ productItem.isiProduct.price }}
+                            Rp.{{ cartItem.isiProduct.price }}
                         </td>
                         <td class="col-4">
                             <button @click="deleteItem(index)">Delete</button>
@@ -104,14 +106,51 @@ export default {
             product2: [
                 {
                     isiProduct: {
-                        name: "Indomie rebus",
-                        description: "Makanan sejuta umat",
-                        stock: 10,
-                        price: 4000,
+                        name: String,
+                        description: String,
+                        stock: Number,
+                        price: Number,
                     },
                 },
             ],
+            cart: [],
         };
+    },
+    methods: {
+        addToCart(index) {
+            const selectedProduct = this.product[index];
+            const cartItemIndex = this.cart.findIndex(
+                (item) =>
+                    item.isiProduct.name === selectedProduct.detailProduct.name
+            );
+
+            if (selectedProduct.detailProduct.stock > 0) {
+                if (cartItemIndex === -1) {
+                    // Jika produk belum ada di keranjang, tambahkan sebagai objek baru
+                    this.cart.push({
+                        isiProduct: {
+                            name: selectedProduct.detailProduct.name,
+                            stock: 1,
+                            price: selectedProduct.detailProduct.price,
+                        },
+                    });
+                } else {
+                    // Jika produk sudah ada di keranjang, tambahkan jumlah stok dan menggandakan harga
+                    const existingCartItem = this.cart[cartItemIndex];
+                    existingCartItem.isiProduct.stock++;
+                    existingCartItem.isiProduct.price =
+                        existingCartItem.isiProduct.stock *
+                        selectedProduct.detailProduct.price;
+                }
+
+                // Kurangi stok produk
+                selectedProduct.detailProduct.stock--;
+            }
+        },
+        deleteItem(index) {
+            // Hapus produk dari keranjang
+            this.cart.splice(index, 1);
+        },
     },
     mounted() {
         console.log("Component mounted");
