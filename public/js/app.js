@@ -19904,7 +19904,8 @@ __webpack_require__.r(__webpack_exports__);
           price: Number
         }
       }],
-      cart: []
+      cart: [],
+      total: 0
     };
   },
   methods: {
@@ -19933,6 +19934,9 @@ __webpack_require__.r(__webpack_exports__);
         // Kurangi stok produk
         selectedProduct.detailProduct.stock--;
       }
+
+      // Update total checkout
+      this.calculateTotal();
     },
     deleteItem: function deleteItem(index) {
       var deletedCartItem = this.cart[index];
@@ -19946,6 +19950,24 @@ __webpack_require__.r(__webpack_exports__);
 
       // Hapus produk dari keranjang
       this.cart.splice(index, 1);
+
+      // Update total checkout
+      this.calculateTotal();
+    },
+    calculateTotal: function calculateTotal() {
+      // Hitung total checkout
+      this.total = this.cart.reduce(function (total, item) {
+        return total + item.isiProduct.price;
+      }, 0);
+    },
+    checkout: function checkout() {
+      if (this.total > 0) {
+        // Tampilkan alert dengan total harga
+        alert("Total Harga: Rp.".concat(this.total));
+      } else {
+        // Tampilkan pesan jika keranjang kosong
+        alert("Keranjang Anda kosong.");
+      }
     }
   },
   mounted: function mounted() {
@@ -20065,18 +20087,18 @@ var _hoisted_21 = {
   "class": "col-4"
 };
 var _hoisted_22 = ["onClick"];
-var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", {
+var _hoisted_23 = {
   "class": "col-12",
   style: {
     "line-height": "40px"
   }
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+};
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
   "class": "col-6"
-}, "Total:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+}, "Total:", -1 /* HOISTED */);
+var _hoisted_25 = {
   "class": "col-6"
-}, "Rp.5.000")], -1 /* HOISTED */);
-var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", null, "Checkout", -1 /* HOISTED */);
-
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_5, [_hoisted_6, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.product, function (item, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
@@ -20096,7 +20118,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         return $options.deleteItem(index);
       }
     }, "Delete", 8 /* PROPS */, _hoisted_22)])]);
-  }), 128 /* KEYED_FRAGMENT */))]), _hoisted_23]), _hoisted_24])]);
+  }), 128 /* KEYED_FRAGMENT */))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_23, [_hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", _hoisted_25, "Rp." + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.total), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    onClick: _cache[0] || (_cache[0] = function () {
+      return $options.checkout && $options.checkout.apply($options, arguments);
+    })
+  }, "Checkout")])]);
 }
 
 /***/ }),

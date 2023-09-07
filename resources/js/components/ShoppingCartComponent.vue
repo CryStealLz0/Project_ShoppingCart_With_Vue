@@ -65,10 +65,10 @@
                 </table>
                 <table class="col-12" style="line-height: 40px">
                     <th class="col-6">Total:</th>
-                    <th class="col-6">Rp.5.000</th>
+                    <th class="col-6">Rp.{{ total }}</th>
                 </table>
             </div>
-            <button>Checkout</button>
+            <button @click="checkout">Checkout</button>
         </div>
     </div>
 </template>
@@ -114,6 +114,7 @@ export default {
                 },
             ],
             cart: [],
+            total: 0,
         };
     },
     methods: {
@@ -146,6 +147,9 @@ export default {
                 // Kurangi stok produk
                 selectedProduct.detailProduct.stock--;
             }
+
+            // Update total checkout
+            this.calculateTotal();
         },
         deleteItem(index) {
             const deletedCartItem = this.cart[index];
@@ -162,6 +166,25 @@ export default {
 
             // Hapus produk dari keranjang
             this.cart.splice(index, 1);
+
+            // Update total checkout
+            this.calculateTotal();
+        },
+        calculateTotal() {
+            // Hitung total checkout
+            this.total = this.cart.reduce(
+                (total, item) => total + item.isiProduct.price,
+                0
+            );
+        },
+        checkout() {
+            if (this.total > 0) {
+                // Tampilkan alert dengan total harga
+                alert(`Total Harga: Rp.${this.total}`);
+            } else {
+                // Tampilkan pesan jika keranjang kosong
+                alert("Keranjang Anda kosong.");
+            }
         },
     },
     mounted() {
