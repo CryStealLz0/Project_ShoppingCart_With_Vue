@@ -1,54 +1,3 @@
-/* .container {
-    margin-top: 100px;
-}
-
-.form input {
-    border: 1px solid #ccc;
-    box-shadow: 1px 1px 6px gray;
-    padding: 10px;
-}
-.form button {
-    padding: 10px;
-    box-shadow: 1px 1px 6px gray;
-    background-color: darksalmon;
-    border: 1px solid darksalmon;
-    color: #fff;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.form button:hover {
-    background-color: rgb(232, 122, 86);
-}
-
-.list li {
-    margin: 20px 0;
-    box-shadow: 2px 2px 5px black;
-    padding: 10px;
-}
-.list li {
-    list-style: none;
-    margin-bottom: 5px;
-    font-size: 18px;
-}
-.list li .delete {
-    font-size: 11px;
-    color: darksalmon;
-    margin-left: 5px;
-    vertical-align: middle;
-    cursor: pointer;
-}
-.list li .edit {
-    font-size: 11px;
-    color: lightgreen;
-    margin-left: 5px;
-    vertical-align: middle;
-    cursor: pointer;
-}
-.list li .done {
-    text-decoration: line-through;
-} */
-
 .container {
     padding: 5rem 1rem;
 }
@@ -65,16 +14,17 @@
     padding-bottom: 1rem;
 }
 
-.product table {
+.product table tr {
     border-bottom: 1px solid grey;
-}
-
-.product table th {
     height: 40px;
 }
 
-table.isiTable td {
-    font-weight: 500;
+.product tablel tr th {
+    font-size: xx-large;
+}
+
+.product table tr td {
+    font-weight: 300;
     height: 40px;
     line-height: 40px;
 }
