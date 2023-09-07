@@ -148,6 +148,18 @@ export default {
             }
         },
         deleteItem(index) {
+            const deletedCartItem = this.cart[index];
+            const productIndex = this.product.findIndex(
+                (item) =>
+                    item.detailProduct.name === deletedCartItem.isiProduct.name
+            );
+
+            if (productIndex !== -1) {
+                // Kembalikan stok produk ke nilai awal
+                this.product[productIndex].detailProduct.stock +=
+                    deletedCartItem.isiProduct.stock;
+            }
+
             // Hapus produk dari keranjang
             this.cart.splice(index, 1);
         },

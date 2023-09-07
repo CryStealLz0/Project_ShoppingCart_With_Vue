@@ -19935,6 +19935,15 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     deleteItem: function deleteItem(index) {
+      var deletedCartItem = this.cart[index];
+      var productIndex = this.product.findIndex(function (item) {
+        return item.detailProduct.name === deletedCartItem.isiProduct.name;
+      });
+      if (productIndex !== -1) {
+        // Kembalikan stok produk ke nilai awal
+        this.product[productIndex].detailProduct.stock += deletedCartItem.isiProduct.stock;
+      }
+
       // Hapus produk dari keranjang
       this.cart.splice(index, 1);
     }
