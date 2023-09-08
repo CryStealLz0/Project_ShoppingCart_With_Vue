@@ -19886,14 +19886,14 @@ __webpack_require__.r(__webpack_exports__);
           name: "Indomie goreng",
           description: "Makanan sejuta umat",
           stock: 10,
-          price: 4000
+          price: 9000
         }
       }, {
         detailProduct: {
           name: "Indomie bakar",
           description: "Makanan sejuta umat",
           stock: 10,
-          price: 4000
+          price: 1020000
         }
       }],
       product2: [{
@@ -19933,10 +19933,16 @@ __webpack_require__.r(__webpack_exports__);
 
         // Kurangi stok produk
         selectedProduct.detailProduct.stock--;
-      }
 
-      // Update total checkout
-      this.calculateTotal();
+        // Update total checkout
+        this.calculateTotal();
+
+        // Aktifkan tombol "Add to Cart" jika stok kembali tersedia
+        if (selectedProduct.detailProduct.stock === 0) {
+          var addButton = document.querySelectorAll("button")[index];
+          addButton.setAttribute("disabled", "disabled");
+        }
+      }
     },
     deleteItem: function deleteItem(index) {
       var deletedCartItem = this.cart[index];
@@ -20054,7 +20060,7 @@ var _hoisted_10 = {
 var _hoisted_11 = {
   "class": "col-2"
 };
-var _hoisted_12 = ["onClick"];
+var _hoisted_12 = ["onClick", "disabled"];
 var _hoisted_13 = {
   "class": "container-shop"
 };
@@ -20107,7 +20113,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.detailProduct.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.detailProduct.description), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.detailProduct.stock), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.detailProduct.price), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
       onClick: function onClick($event) {
         return $options.addToCart(index);
-      }
+      },
+      disabled: item.detailProduct.stock === 0
     }, " Add to cart ", 8 /* PROPS */, _hoisted_12)])]);
   }), 128 /* KEYED_FRAGMENT */))])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_16, [_hoisted_17, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.cart, function (cartItem, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {

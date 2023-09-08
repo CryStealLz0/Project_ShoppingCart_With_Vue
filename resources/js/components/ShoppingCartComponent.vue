@@ -29,7 +29,10 @@
                             {{ item.detailProduct.price }}
                         </td>
                         <td class="col-2">
-                            <button @click="addToCart(index)">
+                            <button
+                                @click="addToCart(index)"
+                                :disabled="item.detailProduct.stock === 0"
+                            >
                                 Add to cart
                             </button>
                         </td>
@@ -91,7 +94,7 @@ export default {
                         name: "Indomie goreng",
                         description: "Makanan sejuta umat",
                         stock: 10,
-                        price: 4000,
+                        price: 9000,
                     },
                 },
                 {
@@ -99,7 +102,7 @@ export default {
                         name: "Indomie bakar",
                         description: "Makanan sejuta umat",
                         stock: 10,
-                        price: 4000,
+                        price: 1020000,
                     },
                 },
             ],
@@ -146,10 +149,17 @@ export default {
 
                 // Kurangi stok produk
                 selectedProduct.detailProduct.stock--;
-            }
 
-            // Update total checkout
-            this.calculateTotal();
+                // Update total checkout
+                this.calculateTotal();
+
+                // Aktifkan tombol "Add to Cart" jika stok kembali tersedia
+                if (selectedProduct.detailProduct.stock === 0) {
+                    const addButton =
+                        document.querySelectorAll("button")[index];
+                    addButton.setAttribute("disabled", "disabled");
+                }
+            }
         },
         deleteItem(index) {
             const deletedCartItem = this.cart[index];
