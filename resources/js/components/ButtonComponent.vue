@@ -1,40 +1,24 @@
 <template>
-    <button type="button" @click="functionClick" :class="color">
-        {{ text }}
-    </button>
+    <button @click="deleteList(index)">HAPUS</button>
 </template>
 
 <script>
 export default {
-    emits: ["emit-click"],
+    emits: ["emit-delete"],
     props: {
-        text: {
-            type: String,
-            default: "",
-        },
-        color: {
-            type: String,
-            default: "",
+        listdata: {
+            type: Array,
+            default: () => {
+                return [];
+            },
         },
     },
     methods: {
-        functionClick() {
-            this.$emit("emit-click");
+        deleteList(index) {
+            this.$emit("emit-delete", index);
         },
     },
 };
 </script>
 
-<style scoped>
-.transparent {
-    font-size: 11px;
-    color: darksalmon;
-    background: transparent;
-    border: none;
-}
-
-.blue {
-    background: lightblue;
-    border: 1px solid lightblue;
-}
-</style>
+<style></style>

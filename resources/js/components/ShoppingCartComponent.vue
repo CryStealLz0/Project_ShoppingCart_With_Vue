@@ -62,7 +62,10 @@
                             Rp.{{ cartItem.isiProduct.price }}
                         </td>
                         <td class="col-4">
-                            <button @click="deleteItem(index)">Delete</button>
+                            <button-form
+                                :listdata="list"
+                                @emitDelete="deleteItem"
+                            />
                         </td>
                     </tr>
                 </table>
@@ -103,16 +106,6 @@ export default {
                         description: "Makanan sejuta umat",
                         stock: 10,
                         price: 1020000,
-                    },
-                },
-            ],
-            product2: [
-                {
-                    isiProduct: {
-                        name: String,
-                        description: String,
-                        stock: Number,
-                        price: Number,
                     },
                 },
             ],

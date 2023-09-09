@@ -19,14 +19,8 @@ import ExampleComponent from "./components/ExampleComponent.vue";
 app.component("example-component", ExampleComponent);
 import ShoppingCartComponent from "./components/ShoppingCartComponent.vue";
 app.component("shopping-cart", ShoppingCartComponent);
-// import ToDoComponent from "./components/ToDoComponent.vue";
-// app.component("to-do", ToDoComponent);
-// import InputFormComponent from "./components/InputFormComponent.vue";
-// app.component("input-form", InputFormComponent);
-// import ListComponent from "./components/ListComponent.vue";
-// app.component("list", ListComponent);
-// import ButtonComponent from "./components/ButtonComponent.vue";
-// app.component("button-form", ButtonComponent);
+import ButtonComponent from "./components/ButtonComponent.vue";
+app.component("button-form", ButtonComponent);
 
 /**
  * The following block of code may be used to automatically register your

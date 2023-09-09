@@ -11972,6 +11972,10 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+body {
+    background: slategrey;
+}
+
 .container {
     padding: 5rem 1rem;
 }
