@@ -32,7 +32,11 @@
                             Rp.{{ cartItem.isiProduct.price }}
                         </td>
                         <td class="col-4">
-                            <button @click="deleteItem(index)">HAPUS</button>
+                            <button-form
+                                :label="buttonProps.deleteLabel"
+                                :is-disabled="buttonProps.isDeleteDisabled"
+                                @button-click="deleteLabelFunction(index)"
+                            />
                         </td>
                     </tr>
                 </table>
@@ -146,7 +150,7 @@ export default {
             }
         },
 
-        deleteItem(index) {
+        deleteLabelFunction(index) {
             const deletedCartItem = this.cart[index];
             const productIndex = this.product.findIndex(
                 (item) =>
