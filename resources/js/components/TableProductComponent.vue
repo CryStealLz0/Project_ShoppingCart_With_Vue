@@ -9,8 +9,12 @@
                 <button-form
                     class="atc"
                     :label="buttonProps.addToCartLabel"
-                    :is-disabled="buttonProps.isAddToCartDisabled"
+                    :disabled="item.detailProduct.stock === 0"
                     @button-click="addToCartFunction(index)"
+                    :style="{
+                        display:
+                            item.detailProduct.stock === 0 ? 'none' : 'block',
+                    }"
                 />
             </td>
         </tr>

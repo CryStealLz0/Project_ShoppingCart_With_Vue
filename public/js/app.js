@@ -20025,11 +20025,15 @@ __webpack_require__.r(__webpack_exports__);
 
         // Update total checkout
         this.calculateTotal();
+        if (productIndex !== -1) {
+          // Kembalikan stok produk ke nilai awal
+          this.product[productIndex].detailProduct.stock += deletedCartItem.isiProduct.stock;
 
-        // Aktifkan tombol "Add to Cart" jika stok kembali tersedia
-        if (selectedProduct.detailProduct.stock === 0) {
-          var addButton = document.querySelectorAll("button")[index];
-          addButton.setAttribute("disabled", "disabled");
+          // Aktifkan tombol "Add to Cart" jika stok kembali tersedia
+          if (this.product[productIndex].detailProduct.stock > 0) {
+            var addButton = document.querySelectorAll("button")[productIndex];
+            addButton.removeAttribute("disabled");
+          }
         }
       }
     },
@@ -20446,11 +20450,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.detailProduct.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.detailProduct.description), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.detailProduct.stock), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.detailProduct.price), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_button_form, {
       "class": "atc",
       label: $props.buttonProps.addToCartLabel,
-      "is-disabled": $props.buttonProps.isAddToCartDisabled,
+      disabled: item.detailProduct.stock === 0,
       onButtonClick: function onButtonClick($event) {
         return $options.addToCartFunction(index);
-      }
-    }, null, 8 /* PROPS */, ["label", "is-disabled", "onButtonClick"])])]);
+      },
+      style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)({
+        display: item.detailProduct.stock === 0 ? 'none' : 'block'
+      })
+    }, null, 8 /* PROPS */, ["label", "disabled", "onButtonClick", "style"])])]);
   }), 128 /* KEYED_FRAGMENT */))]);
 }
 

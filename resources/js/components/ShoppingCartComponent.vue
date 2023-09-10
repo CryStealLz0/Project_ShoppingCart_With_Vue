@@ -101,11 +101,17 @@ export default {
                 // Update total checkout
                 this.calculateTotal();
 
-                // Aktifkan tombol "Add to Cart" jika stok kembali tersedia
-                if (selectedProduct.detailProduct.stock === 0) {
-                    const addButton =
-                        document.querySelectorAll("button")[index];
-                    addButton.setAttribute("disabled", "disabled");
+                if (productIndex !== -1) {
+                    // Kembalikan stok produk ke nilai awal
+                    this.product[productIndex].detailProduct.stock +=
+                        deletedCartItem.isiProduct.stock;
+
+                    // Aktifkan tombol "Add to Cart" jika stok kembali tersedia
+                    if (this.product[productIndex].detailProduct.stock > 0) {
+                        const addButton =
+                            document.querySelectorAll("button")[productIndex];
+                        addButton.removeAttribute("disabled");
+                    }
                 }
             }
         },
