@@ -1,24 +1,34 @@
 <template>
-    <button @click="deleteList(index)">HAPUS</button>
+    <button @click="handleButtonClick" :disabled="disabled">{{ label }}</button>
 </template>
 
 <script>
 export default {
-    emits: ["emit-delete"],
     props: {
-        listdata: {
-            type: Array,
-            default: () => {
-                return [];
-            },
-        },
+        label: String, // Label untuk tombol
+        disabled: Boolean, // Status tombol (dinonaktifkan atau tidak)
     },
     methods: {
-        deleteList(index) {
-            this.$emit("emit-delete", index);
+        handleButtonClick() {
+            // Emit event 'button-click' saat tombol diklik
+            this.$emit("button-click");
         },
     },
 };
 </script>
 
-<style></style>
+<style scoped>
+/* CSS styling untuk tombol (opsional) */
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+</style>

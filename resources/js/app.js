@@ -21,6 +21,10 @@ import ShoppingCartComponent from "./components/ShoppingCartComponent.vue";
 app.component("shopping-cart", ShoppingCartComponent);
 import ButtonComponent from "./components/ButtonComponent.vue";
 app.component("button-form", ButtonComponent);
+import TableComponentAllProduct from "./components/TableComponentAllProduct.vue";
+app.component("table-all-product", TableComponentAllProduct);
+import TableProductComponent from "./components/TableProductComponent.vue";
+app.component("table-product", TableProductComponent);
 
 /**
  * The following block of code may be used to automatically register your
