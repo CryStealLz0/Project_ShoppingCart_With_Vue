@@ -14,42 +14,14 @@
         <div class="container-shop">
             <h1>Keranjang Belanjaan</h1>
             <div class="product">
-                <table class="col-12">
-                    <tr>
-                        <th class="col-3">Name</th>
-                        <th class="col-3">Quantity</th>
-                        <th class="col-2">Price</th>
-                        <th class="col-4"></th>
-                    </tr>
-                    <tr
-                        v-for="(cartItem, index) in cart"
-                        :key="index"
-                        class="isiTable"
-                    >
-                        <td class="col-3">{{ cartItem.isiProduct.name }}</td>
-                        <td class="col-3">{{ cartItem.isiProduct.stock }}</td>
-                        <td class="col-2">
-                            Rp.{{ cartItem.isiProduct.price }}
-                        </td>
-                        <td class="col-4">
-                            <button-form
-                                :label="buttonProps.deleteLabel"
-                                :is-disabled="buttonProps.isDeleteDisabled"
-                                @button-click="deleteLabelFunction(index)"
-                            />
-                        </td>
-                    </tr>
-                </table>
-                <table class="col-12" style="line-height: 40px">
-                    <th class="col-6">Total:</th>
-                    <th class="col-6">Rp.{{ total }}</th>
-                </table>
+                <whistlist-product
+                    :cart="cart"
+                    :total="total"
+                    :button-props="buttonProps"
+                    @delete-label="deleteLabelFunction"
+                    @checkout="checkoutFunction"
+                />
             </div>
-            <button-form
-                :label="buttonProps.checkoutLabel"
-                :is-disabled="buttonProps.isCheckoutDisabled"
-                @button-click="checkoutFunction()"
-            />
         </div>
     </div>
 </template>

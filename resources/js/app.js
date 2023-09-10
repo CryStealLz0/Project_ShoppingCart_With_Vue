@@ -25,6 +25,8 @@ import TableComponentAllProduct from "./components/TableComponentAllProduct.vue"
 app.component("table-all-product", TableComponentAllProduct);
 import TableProductComponent from "./components/TableProductComponent.vue";
 app.component("table-product", TableProductComponent);
+import WhistlistProduct from "./components/WhistlistProduct.vue";
+app.component("whistlist-product", WhistlistProduct);
 
 /**
  * The following block of code may be used to automatically register your
