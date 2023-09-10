@@ -95,4 +95,8 @@ export default {
 .total th {
     line-height: 50px;
 }
+
+tbody tr td {
+    height: 50px;
+}
 </style>

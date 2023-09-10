@@ -22,7 +22,6 @@ export default {
 <style scoped>
 /* CSS styling untuk tombol (opsional) */
 .buttons {
-    margin: 6px 0px;
     height: 40px;
 }
 

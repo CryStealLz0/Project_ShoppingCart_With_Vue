@@ -46,4 +46,8 @@ export default {
 .atc:hover {
     background: rgb(12, 12, 143);
 }
+
+tbody tr td {
+    height: 50px;
+}
 </style>

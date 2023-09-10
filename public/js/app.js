@@ -27108,7 +27108,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\r\n/* CSS styling untuk tombol (opsional) */\n.buttons[data-v-c59fa660] {\r\n    margin: 6px 0px;\r\n    height: 40px;\n}\n.buttons[data-v-c59fa660] {\r\n    border-radius: 5px;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\r\n/* CSS styling untuk tombol (opsional) */\n.buttons[data-v-c59fa660] {\r\n    height: 40px;\n}\n.buttons[data-v-c59fa660] {\r\n    border-radius: 5px;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -27156,7 +27156,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.atc[data-v-c7669d3e] {\r\n    background: rgb(71, 71, 255);\r\n    color: white;\r\n    transition: 0.3s;\n}\n.atc[data-v-c7669d3e]:hover {\r\n    background: rgb(12, 12, 143);\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.atc[data-v-c7669d3e] {\r\n    background: rgb(71, 71, 255);\r\n    color: white;\r\n    transition: 0.3s;\n}\n.atc[data-v-c7669d3e]:hover {\r\n    background: rgb(12, 12, 143);\n}\ntbody tr td[data-v-c7669d3e] {\r\n    height: 50px;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -27180,7 +27180,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.dc[data-v-75ae91ba] {\r\n    color: white;\r\n    background: rgb(192, 41, 41);\r\n    transition: 0.3s;\n}\n.dc[data-v-75ae91ba]:hover {\r\n    background: rgb(132, 14, 14);\n}\n.cc[data-v-75ae91ba] {\r\n    color: white;\r\n    background: rgb(16, 155, 16);\r\n    transition: 0.3s;\n}\n.cc[data-v-75ae91ba]:hover {\r\n    background: rgb(16, 106, 16);\n}\n.total[data-v-75ae91ba] {\r\n    border-bottom: 1px solid grey;\r\n    margin-bottom: 20px;\r\n    height: 50px;\n}\n.total th[data-v-75ae91ba] {\r\n    line-height: 50px;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.dc[data-v-75ae91ba] {\r\n    color: white;\r\n    background: rgb(192, 41, 41);\r\n    transition: 0.3s;\n}\n.dc[data-v-75ae91ba]:hover {\r\n    background: rgb(132, 14, 14);\n}\n.cc[data-v-75ae91ba] {\r\n    color: white;\r\n    background: rgb(16, 155, 16);\r\n    transition: 0.3s;\n}\n.cc[data-v-75ae91ba]:hover {\r\n    background: rgb(16, 106, 16);\n}\n.total[data-v-75ae91ba] {\r\n    border-bottom: 1px solid grey;\r\n    margin-bottom: 20px;\r\n    height: 50px;\n}\n.total th[data-v-75ae91ba] {\r\n    line-height: 50px;\n}\ntbody tr td[data-v-75ae91ba] {\r\n    height: 50px;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
