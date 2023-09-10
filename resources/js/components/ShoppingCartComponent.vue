@@ -55,22 +55,6 @@ export default {
                         price: 1020000,
                     },
                 },
-                {
-                    detailProduct: {
-                        name: "Indomie bakar",
-                        description: "Makanan sejuta umat",
-                        stock: 10,
-                        price: 1020000,
-                    },
-                },
-                {
-                    detailProduct: {
-                        name: "Indomie bakar",
-                        description: "Makanan sejuta umat",
-                        stock: 10,
-                        price: 1020000,
-                    },
-                },
             ],
             cart: [],
             total: 0,

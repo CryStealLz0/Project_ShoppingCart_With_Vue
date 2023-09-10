@@ -32,21 +32,4 @@ export default {
 };
 </script>
 
-<style scoped>
-/* Styling CSS untuk tabel (opsional) */
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-th,
-td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-}
-
-tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-</style>
+<style scoped></style>
