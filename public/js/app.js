@@ -20069,7 +20069,7 @@ __webpack_require__.r(__webpack_exports__);
         return total + item.isiProduct.price;
       }, 0);
     },
-    checkout: function checkout() {
+    checkoutFunction: function checkoutFunction() {
       if (this.total > 0) {
         // Tampilkan alert dengan total harga
         alert("Total Harga: Rp.".concat(this.total));
@@ -20380,11 +20380,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         return $options.deleteLabelFunction(index);
       }
     }, null, 8 /* PROPS */, ["label", "is-disabled", "onButtonClick"])])]);
-  }), 128 /* KEYED_FRAGMENT */))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_14, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", _hoisted_16, "Rp." + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.total), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    onClick: _cache[0] || (_cache[0] = function () {
-      return $options.checkout && $options.checkout.apply($options, arguments);
+  }), 128 /* KEYED_FRAGMENT */))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_14, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", _hoisted_16, "Rp." + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.total), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_button_form, {
+    label: _ctx.buttonProps.checkoutLabel,
+    "is-disabled": _ctx.buttonProps.isCheckoutDisabled,
+    onButtonClick: _cache[0] || (_cache[0] = function ($event) {
+      return $options.checkoutFunction();
     })
-  }, "Checkout")])]);
+  }, null, 8 /* PROPS */, ["label", "is-disabled"])])]);
 }
 
 /***/ }),

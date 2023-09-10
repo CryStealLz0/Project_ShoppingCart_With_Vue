@@ -45,7 +45,11 @@
                     <th class="col-6">Rp.{{ total }}</th>
                 </table>
             </div>
-            <button @click="checkout">Checkout</button>
+            <button-form
+                :label="buttonProps.checkoutLabel"
+                :is-disabled="buttonProps.isCheckoutDisabled"
+                @button-click="checkoutFunction()"
+            />
         </div>
     </div>
 </template>
@@ -176,7 +180,7 @@ export default {
                 0
             );
         },
-        checkout() {
+        checkoutFunction() {
             if (this.total > 0) {
                 // Tampilkan alert dengan total harga
                 alert(`Total Harga: Rp.${this.total}`);
