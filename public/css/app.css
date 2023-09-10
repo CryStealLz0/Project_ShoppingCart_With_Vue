@@ -11973,7 +11973,7 @@ textarea.form-control-lg {
   }
 }
 body {
-    background: slategrey;
+    background: rgb(255, 255, 255);
 }
 
 .container {
@@ -11982,7 +11982,7 @@ body {
 
 .container-shop {
     width: 100%;
-    background: rgb(208, 208, 208);
+    background: rgb(255, 255, 255);
     padding: 1rem 2rem;
 }
 

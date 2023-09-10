@@ -59,9 +59,9 @@ export default {
             cart: [],
             total: 0,
             buttonProps: {
-                addToCartLabel: "Tambah ke Keranjang",
+                addToCartLabel: "Add to cart",
                 isAddToCartDisabled: false,
-                deleteLabel: "Hapus",
+                deleteLabel: "Delete",
                 isDeleteDisabled: false,
                 checkoutLabel: "Checkout",
                 isCheckoutDisabled: false,

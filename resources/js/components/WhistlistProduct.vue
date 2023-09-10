@@ -30,7 +30,7 @@
             </tbody>
         </table>
 
-        <table class="col-12" style="line-height: 40px">
+        <table class="col-12 total" style="line-height: 40px">
             <th class="col-6">Total:</th>
             <th class="col-6">Rp.{{ total }}</th>
         </table>
@@ -68,7 +68,7 @@ export default {
 <style scoped>
 .dc {
     color: white;
-    background: rgb(195, 14, 14);
+    background: rgb(192, 41, 41);
     transition: 0.3s;
 }
 
@@ -84,5 +84,15 @@ export default {
 
 .cc:hover {
     background: rgb(16, 106, 16);
+}
+
+.total {
+    border-bottom: 1px solid grey;
+    margin-bottom: 20px;
+    height: 50px;
+}
+
+.total th {
+    line-height: 50px;
 }
 </style>

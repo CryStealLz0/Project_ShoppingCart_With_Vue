@@ -34,7 +34,7 @@ export default {
 
 <style scoped>
 .atc {
-    background: rgb(22, 22, 255);
+    background: rgb(71, 71, 255);
     color: white;
     transition: 0.3s;
 }
