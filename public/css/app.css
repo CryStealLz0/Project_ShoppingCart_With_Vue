@@ -11992,18 +11992,3 @@ body {
     padding-bottom: 1rem;
 }
 
-.product table tr {
-    border-bottom: 1px solid grey;
-    height: 40px;
-}
-
-.product tablel tr th {
-    font-size: xx-large;
-}
-
-.product table tr td {
-    font-weight: 300;
-    height: 40px;
-    line-height: 40px;
-}
-

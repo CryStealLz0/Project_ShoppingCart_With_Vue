@@ -1,5 +1,7 @@
 <template>
-    <button @click="handleButtonClick" :disabled="disabled">{{ label }}</button>
+    <button class="buttons" @click="handleButtonClick" :disabled="disabled">
+        {{ label }}
+    </button>
 </template>
 
 <script>
@@ -19,16 +21,12 @@ export default {
 
 <style scoped>
 /* CSS styling untuk tombol (opsional) */
-button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    cursor: pointer;
+.buttons {
+    margin: 6px 0px;
+    height: 40px;
 }
 
-button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
+.buttons {
+    border-radius: 5px;
 }
 </style>

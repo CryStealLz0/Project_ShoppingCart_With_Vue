@@ -152,4 +152,19 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.product table tr {
+    border-bottom: 1px solid grey;
+    height: 40px;
+}
+
+.product tablel tr th {
+    font-size: xx-large;
+}
+
+.product table tr td {
+    font-weight: 300;
+    height: 30px;
+    line-height: 30px;
+}
+</style>

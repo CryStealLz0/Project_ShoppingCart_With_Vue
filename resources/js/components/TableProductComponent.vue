@@ -7,6 +7,7 @@
             <td class="col-2">{{ item.detailProduct.price }}</td>
             <td class="col-2">
                 <button-form
+                    class="atc"
                     :label="buttonProps.addToCartLabel"
                     :is-disabled="buttonProps.isAddToCartDisabled"
                     @button-click="addToCartFunction(index)"
@@ -30,3 +31,15 @@ export default {
     },
 };
 </script>
+
+<style scoped>
+.atc {
+    background: rgb(22, 22, 255);
+    color: white;
+    transition: 0.3s;
+}
+
+.atc:hover {
+    background: rgb(12, 12, 143);
+}
+</style>

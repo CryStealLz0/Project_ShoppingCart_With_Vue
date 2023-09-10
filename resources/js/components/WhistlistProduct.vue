@@ -20,6 +20,7 @@
                     <td class="col-2">Rp.{{ cartItem.isiProduct.price }}</td>
                     <td class="col-4">
                         <button-form
+                            class="dc"
                             :label="buttonProps.deleteLabel"
                             :is-disabled="buttonProps.isDeleteDisabled"
                             @button-click="deleteItem(index)"
@@ -35,6 +36,7 @@
         </table>
 
         <button-form
+            class="cc"
             :label="buttonProps.checkoutLabel"
             :is-disabled="buttonProps.isCheckoutDisabled"
             @button-click="checkout"
@@ -63,4 +65,24 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.dc {
+    color: white;
+    background: rgb(195, 14, 14);
+    transition: 0.3s;
+}
+
+.dc:hover {
+    background: rgb(132, 14, 14);
+}
+
+.cc {
+    color: white;
+    background: rgb(16, 155, 16);
+    transition: 0.3s;
+}
+
+.cc:hover {
+    background: rgb(16, 106, 16);
+}
+</style>
