@@ -77,55 +77,29 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
     data: function () {
         return {
-            product: [
-                {
-                    detailProduct: {
-                        name: "Indomie rebus",
-                        description: "Makanan sejuta umat",
-                        stock: 10,
-                        price: 4000,
-                    },
-                },
-                {
-                    detailProduct: {
-                        name: "Indomie goreng",
-                        description: "Makanan sejuta umat",
-                        stock: 10,
-                        price: 9000,
-                    },
-                },
-                {
-                    detailProduct: {
-                        name: "Indomie bakar",
-                        description: "Makanan sejuta umat",
-                        stock: 10,
-                        price: 1020000,
-                    },
-                },
-            ],
             cart: [],
             total: 0,
         };
     },
     methods: {
         addToCart(index) {
-            const selectedProduct = this.product[index];
+            const selectedProduct = this.products[index];
             const cartItemIndex = this.cart.findIndex(
-                (item) =>
-                    item.isiProduct.name === selectedProduct.detailProduct.name
+                (item) => item.isiProduct.name === selectedProduct.name
             );
 
-            if (selectedProduct.detailProduct.stock > 0) {
+            if (selectedProduct.stock > 0) {
                 if (cartItemIndex === -1) {
                     // Jika produk belum ada di keranjang, tambahkan sebagai objek baru
                     this.cart.push({
                         isiProduct: {
-                            name: selectedProduct.detailProduct.name,
+                            name: selectedProduct.name,
                             stock: 1,
-                            price: selectedProduct.detailProduct.price,
+                            price: selectedProduct.price,
                         },
                     });
                 } else {
@@ -134,34 +108,28 @@ export default {
                     existingCartItem.isiProduct.stock++;
                     existingCartItem.isiProduct.price =
                         existingCartItem.isiProduct.stock *
-                        selectedProduct.detailProduct.price;
+                        selectedProduct.price;
                 }
 
-                // Kurangi stok produk
-                selectedProduct.detailProduct.stock--;
+                // Kurangi stok produk di Vuex
+                this.$store.commit("products/decrementStock", index);
 
                 // Update total checkout
                 this.calculateTotal();
-
-                // Aktifkan tombol "Add to Cart" jika stok kembali tersedia
-                if (selectedProduct.detailProduct.stock === 0) {
-                    const addButton =
-                        document.querySelectorAll("button")[index];
-                    addButton.setAttribute("disabled", "disabled");
-                }
             }
         },
         deleteItem(index) {
             const deletedCartItem = this.cart[index];
-            const productIndex = this.product.findIndex(
-                (item) =>
-                    item.detailProduct.name === deletedCartItem.isiProduct.name
+            const productIndex = this.products.findIndex(
+                (item) => item.name === deletedCartItem.isiProduct.name
             );
 
             if (productIndex !== -1) {
-                // Kembalikan stok produk ke nilai awal
-                this.product[productIndex].detailProduct.stock +=
-                    deletedCartItem.isiProduct.stock;
+                // Kembalikan stok produk di Vuex
+                this.$store.commit("products/incrementStock", {
+                    index: productIndex,
+                    quantity: deletedCartItem.isiProduct.stock,
+                });
             }
 
             // Hapus produk dari keranjang
@@ -186,6 +154,9 @@ export default {
                 alert("Keranjang Anda kosong.");
             }
         },
+    },
+    computed: {
+        ...mapGetters("products", ["total"]), // Menggunakan getter total dari modul produk
     },
     mounted() {
         console.log("Component mounted");

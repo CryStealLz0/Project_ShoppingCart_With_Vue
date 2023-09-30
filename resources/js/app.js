@@ -6,6 +6,9 @@
 
 import "./bootstrap";
 import { createApp } from "vue";
+import store from "./store";
+import { createRouter, createWebHistory } from "vue-router";
+import { routes } from "./routes";
 
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
@@ -14,11 +17,13 @@ import { createApp } from "vue";
  */
 
 const app = createApp({});
+const router = createRouter({
+    history: createWebHistory(),
+    routes,
+});
 
 import ExampleComponent from "./components/ExampleComponent.vue";
 app.component("example-component", ExampleComponent);
-import ShoppingCartComponent from "./components/ShoppingCartComponent.vue";
-app.component("shopping-cart", ShoppingCartComponent);
 import ButtonComponent from "./components/ButtonComponent.vue";
 app.component("button-form", ButtonComponent);
 import TableComponentAllProduct from "./components/TableComponentAllProduct.vue";
@@ -46,4 +51,4 @@ app.component("whistlist-product", WhistlistProduct);
  * scaffolding. Otherwise, you will need to add an element yourself.
  */
 
-app.mount("#app");
+app.use(store).use(router).mount("#app");

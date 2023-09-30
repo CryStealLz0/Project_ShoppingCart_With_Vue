@@ -22,5 +22,9 @@
         "vite": "^4.0.0",
         "vue": "^3.2.37",
         "vue-loader": "^16.2.0"
+    },
+    "dependencies": {
+        "vue-router": "^4.2.5",
+        "vuex": "^4.1.0"
     }
 }

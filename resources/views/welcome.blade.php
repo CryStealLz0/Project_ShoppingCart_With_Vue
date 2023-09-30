@@ -16,7 +16,9 @@
     <body class="antialiased">
         <div id="app">
             <!-- <example-component></example-component> -->
-            <shopping-cart><shopping-cart/>
+            <!-- <shopping-cart><shopping-cart/> -->
+            <router-view>
+            </router-view>
         </div>
 
         <script src="{{mix('js/app.js')}}" type="text/javascript"></script>
