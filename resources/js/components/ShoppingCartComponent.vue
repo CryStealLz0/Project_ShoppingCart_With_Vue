@@ -4,13 +4,13 @@
             <h1>Semua Produk</h1>
             <div class="product">
                 <table-all-product
-                    :product="product"
+                    :products="products"
                     :button-props="buttonProps"
                     @add-to-cart="addToCartFunction"
                 />
             </div>
+            <button @click="chartComponent">Chart</button>
         </div>
-
         <div class="container-shop">
             <h1>Keranjang Belanjaan</h1>
             <div class="product">
@@ -27,35 +27,10 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
     data: function () {
         return {
-            product: [
-                {
-                    detailProduct: {
-                        name: "Indomie rebus",
-                        description: "Makanan sejuta umat",
-                        stock: 10,
-                        price: 4000,
-                    },
-                },
-                {
-                    detailProduct: {
-                        name: "Indomie goreng",
-                        description: "Makanan sejuta umat",
-                        stock: 10,
-                        price: 9000,
-                    },
-                },
-                {
-                    detailProduct: {
-                        name: "Indomie bakar",
-                        description: "Makanan sejuta umat",
-                        stock: 10,
-                        price: 1020000,
-                    },
-                },
-            ],
             cart: [],
             total: 0,
             buttonProps: {
@@ -68,15 +43,19 @@ export default {
             },
         };
     },
+    computed: {
+        ...mapState(["products"]), // Menggunakan state langsung tanpa namespace
+    },
     methods: {
         addToCartFunction(index) {
-            const selectedProduct = this.product[index];
-            const cartItemIndex = this.cart.findIndex(
-                (item) =>
-                    item.isiProduct.name === selectedProduct.detailProduct.name
-            );
-
+            const selectedProduct = this.products[index];
             if (selectedProduct.detailProduct.stock > 0) {
+                const cartItemIndex = this.cart.findIndex(
+                    (item) =>
+                        item.isiProduct.name ===
+                        selectedProduct.detailProduct.name
+                );
+
                 if (cartItemIndex === -1) {
                     // Jika produk belum ada di keranjang, tambahkan sebagai objek baru
                     this.cart.push({
@@ -100,32 +79,19 @@ export default {
 
                 // Update total checkout
                 this.calculateTotal();
-
-                if (productIndex !== -1) {
-                    // Kembalikan stok produk ke nilai awal
-                    this.product[productIndex].detailProduct.stock +=
-                        deletedCartItem.isiProduct.stock;
-
-                    // Aktifkan tombol "Add to Cart" jika stok kembali tersedia
-                    if (this.product[productIndex].detailProduct.stock > 0) {
-                        const addButton =
-                            document.querySelectorAll("button")[productIndex];
-                        addButton.removeAttribute("disabled");
-                    }
-                }
             }
         },
 
         deleteLabelFunction(index) {
             const deletedCartItem = this.cart[index];
-            const productIndex = this.product.findIndex(
+            const productIndex = this.products.findIndex(
                 (item) =>
                     item.detailProduct.name === deletedCartItem.isiProduct.name
             );
 
             if (productIndex !== -1) {
                 // Kembalikan stok produk ke nilai awal
-                this.product[productIndex].detailProduct.stock +=
+                this.products[productIndex].detailProduct.stock +=
                     deletedCartItem.isiProduct.stock;
             }
 
@@ -151,9 +117,13 @@ export default {
                 alert("Keranjang Anda kosong.");
             }
         },
+        chartComponent() {
+            this.$router.push("/chart");
+        },
     },
     mounted() {
-        console.log("Component mounted");
+        console.log("Komponen dimuat");
+        console.log(this.$store.state.products);
     },
 };
 </script>

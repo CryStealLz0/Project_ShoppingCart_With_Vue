@@ -1,6 +1,6 @@
 <template>
     <tbody>
-        <tr v-for="(item, index) in product" :key="index" class="isiTable">
+        <tr v-for="(item, index) in products" :key="index" class="isiTable">
             <td class="col-3">{{ item.detailProduct.name }}</td>
             <td class="col-4">{{ item.detailProduct.description }}</td>
             <td class="col-1">{{ item.detailProduct.stock }}</td>
@@ -24,7 +24,7 @@
 <script>
 export default {
     props: {
-        product: Array, // Prop untuk data produk
+        products: Array, // Prop untuk data produk
         buttonProps: Object, // Prop untuk properti tombol
     },
     methods: {

@@ -9,18 +9,29 @@
                 <th class="col-2"></th>
             </tr>
         </thead>
-        <table-product
-            :product="product"
-            :buttonProps="buttonProps"
-            @add-to-cart="addToCartFunction"
-        />
+        <tbody>
+            <tr v-for="(product, index) in products" :key="index">
+                <td>{{ product.name }}</td>
+                <td>{{ product.description }}</td>
+                <td>{{ product.stock }}</td>
+                <td>{{ product.price }}</td>
+                <td>
+                    <!-- Komponen table-product digunakan untuk setiap produk -->
+                    <table-product
+                        :product="product"
+                        :buttonProps="buttonProps"
+                        @add-to-cart="addToCartFunction"
+                    />
+                </td>
+            </tr>
+        </tbody>
     </table>
 </template>
 
 <script>
 export default {
     props: {
-        product: Array, // Data produk
+        products: Array, // Data produk
         buttonProps: Object, // Properti tombol yang digunakan dalam tabel
     },
     methods: {
@@ -31,5 +42,3 @@ export default {
     },
 };
 </script>
-
-<style scoped></style>
