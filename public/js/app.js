@@ -20242,33 +20242,8 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
   computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapState)(["products"])),
   methods: {
     addToCartFunction: function addToCartFunction(index) {
-      var selectedProduct = this.products[index];
-      if (selectedProduct.detailProduct.stock > 0) {
-        var cartItemIndex = this.cart.findIndex(function (item) {
-          return item.isiProduct.name === selectedProduct.detailProduct.name;
-        });
-        if (cartItemIndex === -1) {
-          // Jika produk belum ada di keranjang, tambahkan sebagai objek baru
-          this.cart.push({
-            isiProduct: {
-              name: selectedProduct.detailProduct.name,
-              stock: 1,
-              price: selectedProduct.detailProduct.price
-            }
-          });
-        } else {
-          // Jika produk sudah ada di keranjang, tambahkan jumlah stok dan menggandakan harga
-          var existingCartItem = this.cart[cartItemIndex];
-          existingCartItem.isiProduct.stock++;
-          existingCartItem.isiProduct.price = existingCartItem.isiProduct.stock * selectedProduct.detailProduct.price;
-        }
-
-        // Kurangi stok produk
-        selectedProduct.detailProduct.stock--;
-
-        // Update total checkout
-        this.calculateTotal();
-      }
+      // Memanggil action addToCart dengan mengirimkan indeks produk
+      this.$store.dispatch("addToCart", index);
     },
     deleteLabelFunction: function deleteLabelFunction(index) {
       var deletedCartItem = this.cart[index];
@@ -20333,8 +20308,8 @@ __webpack_require__.r(__webpack_exports__);
 
   methods: {
     addToCartFunction: function addToCartFunction(index) {
-      // Metode ini sekarang berada dalam komponen induk
-      this.$emit("add-to-cart", index);
+      // Memanggil action addToCart dengan mengirimkan indeks produk
+      this.$store.dispatch("addToCart", index);
     }
   }
 });
@@ -20361,9 +20336,12 @@ __webpack_require__.r(__webpack_exports__);
 
   methods: {
     addToCartFunction: function addToCartFunction(index) {
-      // Method untuk menambahkan produk ke keranjang
-      this.$emit("add-to-cart", index);
+      // Memanggil action addToCart dengan mengirimkan indeks produk
+      this.$store.dispatch("addToCart", index);
     }
+  },
+  mounted: function mounted() {
+    console.log("addToCartLabel:", this.buttonProps.addToCartLabel);
   }
 });
 
@@ -20628,19 +20606,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_whistlist_product = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("whistlist-product");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_table_all_product, {
     products: _ctx.products,
-    "button-props": _ctx.buttonProps,
-    onAddToCart: $options.addToCartFunction
-  }, null, 8 /* PROPS */, ["products", "button-props", "onAddToCart"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    "button-props": _ctx.buttonProps
+  }, null, 8 /* PROPS */, ["products", "button-props"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[0] || (_cache[0] = function () {
       return $options.chartComponent && $options.chartComponent.apply($options, arguments);
     })
   }, "Chart")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_whistlist_product, {
     cart: _ctx.cart,
     total: _ctx.total,
-    "button-props": _ctx.buttonProps,
-    onDeleteLabel: $options.deleteLabelFunction,
-    onCheckout: $options.checkoutFunction
-  }, null, 8 /* PROPS */, ["cart", "total", "button-props", "onDeleteLabel", "onCheckout"])])])]);
+    "button-props": _ctx.buttonProps
+  }, null, 8 /* PROPS */, ["cart", "total", "button-props"])])])]);
 }
 
 /***/ }),
@@ -20681,8 +20656,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(product.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(product.description), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(product.stock), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(product.price), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Komponen table-product digunakan untuk setiap produk "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_table_product, {
       product: product,
       buttonProps: $props.buttonProps,
-      onAddToCart: $options.addToCartFunction
-    }, null, 8 /* PROPS */, ["product", "buttonProps", "onAddToCart"])])]);
+      onButtonClick: function onButtonClick($event) {
+        return $options.addToCartFunction(index);
+      }
+    }, null, 8 /* PROPS */, ["product", "buttonProps", "onButtonClick"])])]);
   }), 128 /* KEYED_FRAGMENT */))])]);
 }
 
@@ -20725,17 +20702,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
       key: index,
       "class": "isiTable"
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.detailProduct.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.detailProduct.description), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.detailProduct.stock), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.detailProduct.price), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_button_form, {
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.detailProduct.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.detailProduct.description), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.detailProduct.stock), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.detailProduct.price), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Komponen button-form untuk tombol \"Add to Cart\" "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_button_form, {
       "class": "atc",
       label: $props.buttonProps.addToCartLabel,
-      disabled: item.detailProduct.stock === 0,
       onButtonClick: function onButtonClick($event) {
         return $options.addToCartFunction(index);
       },
       style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)({
         display: item.detailProduct.stock === 0 ? 'none' : 'block'
       })
-    }, null, 8 /* PROPS */, ["label", "disabled", "onButtonClick", "style"])])]);
+    }, null, 8 /* PROPS */, ["label", "onButtonClick", "style"])])]);
   }), 128 /* KEYED_FRAGMENT */))]);
 }
 
@@ -20982,7 +20958,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
-// store.js
 
 var store = (0,vuex__WEBPACK_IMPORTED_MODULE_0__.createStore)({
   state: function state() {
@@ -21002,14 +20977,54 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_0__.createStore)({
         description: "Makanan sejuta umat",
         stock: 10,
         price: 1020000
-      }]
+      }],
+      cart: [],
+      // Tambahkan state cart di sini
+      total: 0 // Tambahkan state total di sini
     };
   },
+
   mutations: {
-    // Definisikan mutations Anda di sini
+    ADD_TO_CART: function ADD_TO_CART(state, product) {
+      state.cart.push(product);
+    },
+    UPDATE_TOTAL: function UPDATE_TOTAL(state, newTotal) {
+      state.total = newTotal;
+    } // Definisikan mutations Anda di sini
   },
   actions: {
-    // Definisikan actions Anda di sini
+    addToCart: function addToCart(_ref, index) {
+      var state = _ref.state,
+        commit = _ref.commit;
+      var selectedProduct = state.products[index];
+      if (selectedProduct.stock > 0) {
+        var cartItemIndex = state.cart.findIndex(function (item) {
+          return item.name === selectedProduct.name;
+        });
+        if (cartItemIndex === -1) {
+          // Jika produk belum ada di keranjang, tambahkan sebagai objek baru
+          commit("ADD_TO_CART", {
+            name: selectedProduct.name,
+            stock: 1,
+            price: selectedProduct.price
+          });
+        } else {
+          // Jika produk sudah ada di keranjang, tambahkan jumlah stok dan menggandakan harga
+          var existingCartItem = state.cart[cartItemIndex];
+          existingCartItem.stock++;
+          existingCartItem.price = existingCartItem.stock * selectedProduct.price;
+        }
+
+        // Kurangi stok produk
+        selectedProduct.stock--;
+
+        // Update total checkout (anda dapat memanggil action lain atau memutakhirkan langsung state di sini)
+        var newTotal = state.cart.reduce(function (total, item) {
+          return total + item.price;
+        }, 0);
+        commit("UPDATE_TOTAL", newTotal);
+      }
+    } // Definisikan actions Anda di sini
   },
   getters: {
     // Definisikan getters Anda di sini

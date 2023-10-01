@@ -20,7 +20,7 @@
                     <table-product
                         :product="product"
                         :buttonProps="buttonProps"
-                        @add-to-cart="addToCartFunction"
+                        @button-click="addToCartFunction(index)"
                     />
                 </td>
             </tr>
@@ -36,8 +36,8 @@ export default {
     },
     methods: {
         addToCartFunction(index) {
-            // Metode ini sekarang berada dalam komponen induk
-            this.$emit("add-to-cart", index);
+            // Memanggil action addToCart dengan mengirimkan indeks produk
+            this.$store.dispatch("addToCart", index);
         },
     },
 };

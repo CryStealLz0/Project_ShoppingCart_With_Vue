@@ -6,7 +6,6 @@
                 <table-all-product
                     :products="products"
                     :button-props="buttonProps"
-                    @add-to-cart="addToCartFunction"
                 />
             </div>
             <button @click="chartComponent">Chart</button>
@@ -18,8 +17,6 @@
                     :cart="cart"
                     :total="total"
                     :button-props="buttonProps"
-                    @delete-label="deleteLabelFunction"
-                    @checkout="checkoutFunction"
                 />
             </div>
         </div>
@@ -48,38 +45,8 @@ export default {
     },
     methods: {
         addToCartFunction(index) {
-            const selectedProduct = this.products[index];
-            if (selectedProduct.detailProduct.stock > 0) {
-                const cartItemIndex = this.cart.findIndex(
-                    (item) =>
-                        item.isiProduct.name ===
-                        selectedProduct.detailProduct.name
-                );
-
-                if (cartItemIndex === -1) {
-                    // Jika produk belum ada di keranjang, tambahkan sebagai objek baru
-                    this.cart.push({
-                        isiProduct: {
-                            name: selectedProduct.detailProduct.name,
-                            stock: 1,
-                            price: selectedProduct.detailProduct.price,
-                        },
-                    });
-                } else {
-                    // Jika produk sudah ada di keranjang, tambahkan jumlah stok dan menggandakan harga
-                    const existingCartItem = this.cart[cartItemIndex];
-                    existingCartItem.isiProduct.stock++;
-                    existingCartItem.isiProduct.price =
-                        existingCartItem.isiProduct.stock *
-                        selectedProduct.detailProduct.price;
-                }
-
-                // Kurangi stok produk
-                selectedProduct.detailProduct.stock--;
-
-                // Update total checkout
-                this.calculateTotal();
-            }
+            // Memanggil action addToCart dengan mengirimkan indeks produk
+            this.$store.dispatch("addToCart", index);
         },
 
         deleteLabelFunction(index) {
